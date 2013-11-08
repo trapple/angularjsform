@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="userForm">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen, projection" charset="utf-8">
+  <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+  <script src="js/form.js"></script>
+  <title>Search</title>
+</head>
+<body>
+  <div class="container" ng-controller="userFormCtrl">
+    <div class="page-header"><h1>AngularJSを使ったフォーム</h1></div>
+    <form novalidate name="userForm" class="form-horizontal">
+      <fieldset>
+        <legend>入力フォーム</legend>
+
+        <div class="control-group">
+          <label class="control-label" for="name">お名前</label>
+          <div class="controls">
+            <input id="name" name="name" type="text" ng-model="user.name" required>
+            <span ng-show="userForm.name.$error.required">お名前は必須です</span>
+          </div>
+        </div>  
+
+        <div class="control-group">
+          <label class="control-label" for="age">年齢</label>
+          <div class="controls">
+            <input id="age" name="age" type="number" ng-model="user.age" min="0" max="999" required>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">性別</label>
+          <div class="controls">
+            <label class="radio inline">
+              <input id="male" name="sex" type="radio" ng-model="user.sex" value="1"> 男性
+            </label>
+            <label class="radio inline">
+              <input id="female" name="sex" type="radio" ng-model="user.sex" value="2"> 女性
+            </label>
+          </div>
+        </div>
+        
+        <div class="control-group">
+          <label class="control-label">喫煙</label>
+          <div class="controls">
+            <label class="checkbox">
+              <input type="checkbox" name="smoking" ng-model="user.smoking" ng-true-value="1" ng-false-value=""> する
+            </label>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="comment">ひとこと</label>
+          <div class="controls right">
+            <textarea rows="5" cols="5" ng-model="user.comment"></textarea><br>{{140-user.comment.length}}
+          </div>
+        </div>
+        
+        <p><input class="btn" type="button" value="登録" ng-click="addUser()">  </p>
+      </fieldset>
+    </form>
+    <hr>
+    <pre>"user" : {{user|json}}</pre>
+    <pre>"users" : {{users|json}}</pre>
+  </div>
+</body>
+</html>
